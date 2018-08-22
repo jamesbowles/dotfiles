@@ -33,6 +33,7 @@ set re=1
 " matches 'Inner' only
 set ignorecase
 set smartcase
+set nofixeol
 
 call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-vividchalk'
