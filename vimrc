@@ -1,4 +1,3 @@
-set nocompatible
 
 let mapleader = " "
 set backspace=2   " Backspace deletes like most programs in insert mode
@@ -37,8 +36,6 @@ set nofixeol
 
 call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-vividchalk'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'rking/ag.vim'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
@@ -48,6 +45,14 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'mwise/vim-rspec-focus'
+Plug 'tpope/vim-unimpaired'
+Plug 'w0rp/ale'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-dispatch'
+Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-cucumber'
 " Snipets
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -60,22 +65,8 @@ colorscheme vividchalk
 set hlsearch
 hi Search cterm=NONE ctermfg=black ctermbg=yellow
 
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-
-" Macros
-let @b = 'Obinding.pry'
-
+" Insert a debugger
+let @b = 'Obyebug'
 
 " File explorer
 let g:netrw_liststyle=3
@@ -112,3 +103,41 @@ autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <
 :nnoremap <leader>fc :ToggleContextFocusTag<CR>
 :nnoremap <leader>fi :ToggleItFocusTag<CR>
 :nnoremap <leader>rf :RemoveAllFocusTags<CR>
+
+" copy current file name (relative/absolute) to system clipboard
+" relative path (src/foo.txt)
+nnoremap <leader>cf :let @+=expand("%")<CR>
+
+" absolute path (/something/src/foo.txt)
+nnoremap <leader>cF :let @+=expand("%:p")<CR>
+
+" filename (foo.txt)
+nnoremap <leader>ct :let @+=expand("%:t")<CR>
+
+let g:ale_linters = { 'ruby': ['rubocop'], 'eruby': ['ruumba'], 'javascript': ['eslint'] }
+
+
+" Disable linting highlighting by default
+"let g:ale_set_highlights = 1
+" Disable linting every time a file is opened
+"let g:ale_lint_on_enter = 0
+"let g:ale_lint_on_text_changed = "normal"
+"let g:ale_lint_on_save = 1
+
+" let g:ale_lint_on_insert_leave
+
+" ALE keybindings
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" FZF key mappings
+nnoremap <C-b> :Buffers<CR>
+nnoremap <C-g>g :Ag<CR>
+nnoremap <C-f>l :BLines<CR>
+nnoremap <C-p> :GFiles<CR>
+nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+
