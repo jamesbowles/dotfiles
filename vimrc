@@ -76,8 +76,8 @@ map <leader>k :Explore<cr>
 map <leader>[ :NERDTreeToggle<CR>
 map <leader>{ :NERDTreeFind<CR>
 
-" Toggle pastemode
-map <leader>p :set paste!<CR>
+" Set paste, paste from clipboard, unset paste
+map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 
 " Clear highlighting
 map <leader>n :noh<CR>
