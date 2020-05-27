@@ -53,6 +53,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-bundler'
 " Snipets
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -77,7 +78,8 @@ map <leader>[ :NERDTreeToggle<CR>
 map <leader>{ :NERDTreeFind<CR>
 
 " Set paste, paste from clipboard, unset paste
-map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+"map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+nmap <silent> <leader>p :set paste<CR>"*p:set nopaste<CR>
 
 " Clear highlighting
 map <leader>n :noh<CR>
