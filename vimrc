@@ -38,6 +38,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-vividchalk'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-rails'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
@@ -47,7 +48,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'mwise/vim-rspec-focus'
 Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-dispatch'
 Plug 'thoughtbot/vim-rspec'
@@ -59,6 +60,7 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'honza/vim-snippets'
 Plug 'garbas/vim-snipmate'
+Plug 'tpope/vim-repeat'
 call plug#end()
 
 colorscheme vividchalk
@@ -79,6 +81,7 @@ map <leader>{ :NERDTreeFind<CR>
 
 " Set paste, paste from clipboard, unset paste
 "map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+set clipboard=unnamedplus
 nmap <silent> <leader>p :set paste<CR>"*p:set nopaste<CR>
 
 " Clear highlighting
@@ -143,3 +146,5 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 
+set visualbell
+let g:snipMate = { 'snippet_version': 1 }
