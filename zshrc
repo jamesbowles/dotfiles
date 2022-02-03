@@ -11,6 +11,11 @@ then
   [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 fi
 
+if [[ `uname` == 'Linux' ]]
+then
+  alias open="xdg-open"
+fi
+
 alias dco="docker-compose"
 alias dcr="docker-compose run"
 alias dcu="docker-compose up"
@@ -24,13 +29,11 @@ export EDITOR=vim
 export LC_CTYPE=en_US.UTF-8
 
 ctrlp() {
-  </dev/tty vim -c CtrlP
+  </dev/tty vim $(fzf)
 }
 zle -N ctrlp
 
 bindkey "^p" ctrlp
-
-eval "$(rbenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
